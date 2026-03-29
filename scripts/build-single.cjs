@@ -44,8 +44,21 @@ function buildStandaloneHtml() {
   const js = fs.readFileSync(path.join(docsDir, "app.js"), "utf8");
   const visemes = fs.readFileSync(path.join(docsDir, "visemes.json"), "utf8");
   const assetMap = collectAssets(docsDir);
+  const inlineAssetPath = (source) => assetMap[source] || source;
+  const inlineQuotedAssets = (source) =>
+    source.replace(/(["'])(\.\/assets\/[^"']+)\1/g, (match, quote, assetPath) => {
+      const replacement = inlineAssetPath(assetPath);
+      return `${quote}${replacement}${quote}`;
+    });
 
-  let output = html;
+  const inlinedHtml = html.replace(
+    /(src|href)="(\.\/assets\/[^"]+)"/g,
+    (match, attribute, assetPath) => `${attribute}="${inlineAssetPath(assetPath)}"`,
+  );
+
+  const inlinedJs = inlineQuotedAssets(js);
+
+  let output = inlinedHtml;
   output = output.replace(
     '<link rel="stylesheet" href="./styles.css" />',
     `<style>\n${css}\n</style>`,
@@ -53,10 +66,8 @@ function buildStandaloneHtml() {
 
   output = output.replace(
     '<script src="./app.js" type="module"></script>',
-    `<script>\nwindow.__CHOIR_ASSET_MAP__ = ${JSON.stringify(assetMap)};\nwindow.__CHOIR_VISEMES__ = ${visemes};\n</script>\n<script type="module">\n${js}\n</script>`,
+    `<script>\nwindow.__CHOIR_ASSET_MAP__ = {};\nwindow.__CHOIR_VISEMES__ = ${visemes};\n</script>\n<script type="module">\n${inlinedJs}\n</script>`,
   );
-
-  output = output.replace(/src="(\.\/assets\/[^"]+)"/g, (_, src) => `src="${assetMap[src]}"`);
 
   fs.writeFileSync(outputFile, output, "utf8");
 }
