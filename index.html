@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Choir Prototype</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='28' fill='%2320120c'/%3E%3Cpath d='M20 39c6-10 18-10 24 0' stroke='%23f1b25c' stroke-width='4' fill='none' stroke-linecap='round'/%3E%3Ccircle cx='24' cy='26' r='3' fill='%23f7ebd5'/%3E%3Ccircle cx='40' cy='26' r='3' fill='%23f7ebd5'/%3E%3C/svg%3E"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="stage" aria-label="Choir stage">
+        <img class="stage__background" src="./BG.png" alt="" />
+
+        <div class="characters" id="characters">
+          <button
+            class="character character--slot-1"
+            type="button"
+            data-character-id="tsoi"
+            aria-label="Toggle character 1"
+            aria-pressed="false"
+          >
+            <img
+              class="character__image"
+              src="./Characters/Character_1/Tsoi_0_main.png"
+              alt=""
+            />
+          </button>
+
+          <button
+            class="character character--slot-2"
+            type="button"
+            data-character-id="july"
+            aria-label="Toggle character 2"
+            aria-pressed="false"
+          >
+            <img
+              class="character__image"
+              src="./Characters/Character_2/July_0_main.png"
+              alt=""
+            />
+          </button>
+
+          <button
+            class="character character--slot-3"
+            type="button"
+            data-character-id="jakl"
+            aria-label="Toggle character 3"
+            aria-pressed="false"
+          >
+            <img
+              class="character__image"
+              src="./Characters/Character_3/Jakl_0_main.png"
+              alt=""
+            />
+          </button>
+
+          <button
+            class="character character--slot-4"
+            type="button"
+            data-character-id="gavr"
+            aria-label="Toggle character 4"
+            aria-pressed="false"
+          >
+            <img
+              class="character__image"
+              src="./Characters/Character_4/Gavr_0_main.png"
+              alt=""
+            />
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <script src="./app.js" type="module"></script>
+  </body>
+</html>

@@ -1,0 +1,60 @@
+{
+  "tsoi": {
+    "loopDuration": 4.2,
+    "note": "User timing import. Times are interpreted as seconds with hundredths, so 00:00:01:28 = 1.28s. frameIndex values are zero-based: 0=Tsoi_1, 1=Tsoi_2, 2=Tsoi_3, 3=Tsoi_4.",
+    "frames": [
+      { "start": 0.0, "end": 0.08, "frameIndex": 0 },
+      { "start": 0.08, "end": 0.29, "frameIndex": 1 },
+      { "start": 0.29, "end": 0.48, "frameIndex": 2 },
+      { "start": 0.48, "end": 1.19, "frameIndex": 3 },
+      { "start": 1.19, "end": 1.28, "frameIndex": 0 },
+      { "start": 1.28, "end": 1.36, "frameIndex": 1 },
+      { "start": 1.36, "end": 1.45, "frameIndex": 0 },
+      { "start": 1.45, "end": 2.08, "frameIndex": 1 },
+      { "start": 2.08, "end": 2.16, "frameIndex": 0 },
+      { "start": 2.16, "end": 2.4, "frameIndex": 1 },
+      { "start": 2.4, "end": 2.59, "frameIndex": 2 },
+      { "start": 2.59, "end": 3.3, "frameIndex": 3 },
+      { "start": 3.3, "end": 3.39, "frameIndex": 0 },
+      { "start": 3.39, "end": 3.47, "frameIndex": 1 },
+      { "start": 3.47, "end": 3.56, "frameIndex": 0 },
+      { "start": 3.56, "end": 4.2, "frameIndex": 1 }
+    ]
+  },
+  "july": {
+    "loopDuration": 4.2,
+    "note": "User timing import. Times are interpreted as seconds with hundredths, so 00:00:02:21 = 2.21s. frameIndex values are zero-based: 0=July_1, 1=July_2, 2=July_3, 3=July_4.",
+    "frames": [
+      { "start": 0.0, "end": 2.21, "frameIndex": 0 },
+      { "start": 2.21, "end": 2.38, "frameIndex": 1 },
+      { "start": 2.38, "end": 2.49, "frameIndex": 2 },
+      { "start": 2.49, "end": 3.02, "frameIndex": 3 },
+      { "start": 3.02, "end": 3.13, "frameIndex": 2 },
+      { "start": 3.13, "end": 3.39, "frameIndex": 3 },
+      { "start": 3.39, "end": 3.5, "frameIndex": 2 },
+      { "start": 3.5, "end": 4.2, "frameIndex": 3 }
+    ]
+  },
+  "jakl": {
+    "loopDuration": 4.2,
+    "note": "User timing import. Times are interpreted as seconds with hundredths, so 00:00:02:12 = 2.12s. frameIndex values are zero-based: 0=Jakl_1, 1=Jakl_2, 2=Jakl_3, 3=Jakl_4, 4=Jakl_5.",
+    "frames": [
+      { "start": 0.0, "end": 0.04, "frameIndex": 0 },
+      { "start": 0.04, "end": 2.12, "frameIndex": 1 },
+      { "start": 2.12, "end": 2.18, "frameIndex": 2 },
+      { "start": 2.18, "end": 2.3, "frameIndex": 3 },
+      { "start": 2.3, "end": 4.2, "frameIndex": 4 }
+    ]
+  },
+  "gavr": {
+    "loopDuration": 8.4,
+    "note": "User timing import. Times are interpreted as seconds with hundredths, so 00:00:06:34 = 6.34s. frameIndex values are zero-based: 0=Gavr_1, 1=Gavr_2, 2=Gavr_3.",
+    "frames": [
+      { "start": 0.0, "end": 2.14, "frameIndex": 0 },
+      { "start": 2.14, "end": 4.3, "frameIndex": 1 },
+      { "start": 4.3, "end": 5.58, "frameIndex": 0 },
+      { "start": 5.58, "end": 6.34, "frameIndex": 2 },
+      { "start": 6.34, "end": 8.4, "frameIndex": 1 }
+    ]
+  }
+}
