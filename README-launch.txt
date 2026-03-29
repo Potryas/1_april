@@ -13,3 +13,9 @@
 1. Дважды нажми [start-web.cmd](D:\Codex_projects\Horses\start-web.cmd)
 2. Скрипт соберет легкую версию в папку docs
 3. Откроется браузер с версией для публикации
+
+Один автономный файл:
+
+1. Дважды нажми [build-standalone.cmd](D:\Codex_projects\Horses\build-standalone.cmd)
+2. Скрипт соберет один файл: [Choir-Standalone.html](D:\Codex_projects\Horses\Choir-Standalone.html)
+3. Этот файл можно открыть двойным кликом без локального сервера

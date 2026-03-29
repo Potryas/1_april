@@ -62,6 +62,8 @@ const CHARACTER_CONFIG = [
 ];
 
 const EXTRA_TRACKS = [];
+const embeddedAssets = window.__CHOIR_ASSET_MAP__ || {};
+const embeddedVisemes = window.__CHOIR_VISEMES__ || null;
 
 const state = {
   context: null,
@@ -75,7 +77,16 @@ const state = {
   characters: new Map(),
 };
 
+function resolveAssetPath(sourcePath) {
+  return embeddedAssets[sourcePath] || sourcePath;
+}
+
 async function loadVisemes() {
+  if (embeddedVisemes) {
+    state.visemeMaps = embeddedVisemes;
+    return;
+  }
+
   try {
     const response = await fetch("./visemes.json", { cache: "no-store" });
     if (!response.ok) {
@@ -89,7 +100,7 @@ async function loadVisemes() {
 }
 
 async function decodeBuffer(context, src) {
-  const response = await fetch(src);
+  const response = await fetch(resolveAssetPath(src));
   const arrayBuffer = await response.arrayBuffer();
   return context.decodeAudioData(arrayBuffer);
 }
@@ -193,12 +204,13 @@ function resolveFrameIndex(character, songTime) {
 
 function updateCharacterVisual(character, songTime) {
   const image = character.element.querySelector(".character__image");
-  const targetSrc = character.active
+  const targetSrc = resolveAssetPath(character.active
     ? character.singingFrames[resolveFrameIndex(character, songTime)]
-    : character.idleSrc;
+    : character.idleSrc);
 
-  if (image.src !== new URL(targetSrc, window.location.href).href) {
+  if (image.dataset.currentSrc !== targetSrc) {
     image.src = targetSrc;
+    image.dataset.currentSrc = targetSrc;
   }
 }
 
@@ -280,6 +292,12 @@ window.advanceTime = () => {
 };
 
 async function init() {
+  document.querySelectorAll("img[src]").forEach((image) => {
+    const originalSrc = image.getAttribute("src");
+    const resolvedSrc = resolveAssetPath(originalSrc);
+    image.src = resolvedSrc;
+    image.dataset.currentSrc = resolvedSrc;
+  });
   await loadVisemes();
   bindCharacters();
   render();
