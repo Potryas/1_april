@@ -1,0 +1,191 @@
+:root {
+  color-scheme: dark;
+  --bg: #140c07;
+  --line: rgba(255, 224, 185, 0.18);
+  --glow: rgba(255, 207, 145, 0.22);
+  --shadow: 0 24px 70px rgba(0, 0, 0, 0.42);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  background:
+    radial-gradient(circle at top, rgba(120, 74, 31, 0.24), transparent 42%),
+    linear-gradient(180deg, #2c180d 0%, var(--bg) 100%);
+}
+
+body {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+}
+
+.app-shell {
+  width: min(100%, 1440px);
+}
+
+.stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  max-height: calc(100vh - 40px);
+  overflow: hidden;
+  border-radius: 28px;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+  background: #1f130d;
+}
+
+.stage__background {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(0.9) brightness(0.72);
+}
+
+.stage::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(13, 7, 4, 0.08), rgba(13, 7, 4, 0.2)),
+    radial-gradient(circle at center, rgba(255, 229, 190, 0.02), transparent 56%);
+  pointer-events: none;
+}
+
+.characters {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.character {
+  position: absolute;
+  bottom: 0;
+  width: 24%;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  background: none;
+  cursor: pointer;
+  transform-origin: center bottom;
+  outline: none;
+  transition: filter 180ms ease;
+  --idle-x: 0px;
+  --idle-y: 0px;
+  --idle-rotate: 0deg;
+  --sing-x: 0px;
+  --sing-y: 0px;
+  --sing-rotate: 0deg;
+  --bob-y: 0px;
+  --bob-rotate: 0deg;
+  z-index: 2;
+  transform:
+    translate3d(var(--idle-x), var(--idle-y), 0)
+    rotate(var(--idle-rotate));
+}
+
+.character:hover,
+.character:focus-visible {
+  filter: brightness(1.04);
+}
+
+.character--active {
+  transform:
+    translate3d(
+      calc(var(--idle-x) + var(--sing-x)),
+      calc(var(--idle-y) + var(--sing-y) + var(--bob-y)),
+      0
+    )
+    rotate(calc(var(--idle-rotate) + var(--sing-rotate) + var(--bob-rotate)));
+}
+
+.character__image {
+  display: block;
+  width: 100%;
+  height: auto;
+  pointer-events: none;
+  user-select: none;
+}
+
+.character--slot-1 {
+  left: 1.8%;
+  width: 31%;
+  z-index: 3;
+  --idle-y: 26px;
+  --sing-x: -2px;
+  --sing-y: -4px;
+  --sing-rotate: -0.5deg;
+}
+
+.character--slot-2 {
+  left: 28.2%;
+  z-index: 4;
+  --idle-y: 18px;
+  --sing-x: -1px;
+  --sing-y: -5px;
+  --sing-rotate: 0.6deg;
+}
+
+.character--slot-3 {
+  left: 47.7%;
+  width: 27.9%;
+  z-index: 3;
+  --idle-y: 26px;
+  --sing-x: 1px;
+  --sing-y: -4px;
+  --sing-rotate: -0.45deg;
+}
+
+.character--slot-4 {
+  left: 68.4%;
+  width: 31%;
+  z-index: 1;
+  --idle-y: 34px;
+  --sing-x: 2px;
+  --sing-y: -4px;
+  --sing-rotate: 0.55deg;
+}
+
+@media (max-width: 900px) {
+  body {
+    padding: 10px;
+  }
+
+  .stage {
+    max-height: none;
+    border-radius: 18px;
+  }
+
+  .character {
+    width: 31%;
+  }
+
+  .character--slot-1 {
+    left: -7%;
+    width: 43%;
+  }
+
+  .character--slot-2 {
+    left: 20%;
+    --idle-y: 12px;
+  }
+
+  .character--slot-3 {
+    left: 41%;
+    width: 38%;
+  }
+
+  .character--slot-4 {
+    left: 63%;
+    width: 43%;
+  }
+}
